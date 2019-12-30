@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="">
+<title>detail</title>
+<!-- Custom-Files -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<!-- Bootstrap-Core-CSS -->
+<link href="css/css_slider.css" type="text/css" rel="stylesheet"
+	media="all">
+<!-- banner slider -->
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+<!-- Style-CSS -->
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<!-- Font-Awesome-Icons-CSS -->
+<link href="css/detail.css" rel="stylesheet">
+<!-- //Custom-Files -->
+
+<!-- Web-Fonts -->
+<link
+	href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i"
+	rel="stylesheet">
+<link
+	href="http://fonts.googleapis.com/css?family=Niconne&amp;subset=latin-ext"
+	rel="stylesheet">
+<link
+	href="http://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext"
+	rel="stylesheet">
+<!-- //Web-Fonts -->
+<script src="js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<div id="head"></div>
+	<script>
+		$("#head").load("nav.html");
+	</script>
+	<div id="home">
+		<section class="portfolio py-5" id="detail">
+			<div class="container py-xl-5 py-lg-3">
+				<div class="pp-content">
+					<!-- 管理---用户表 -->
+					<div class="pp-manage">
+						<div class="container">
+							<div class="info_search">
+								<div class="search_input">
+									<div class="input-group mb-3">
+										<select style="cursor: pointer; width: 5rem" class="T-sort">
+											<option value="user_id">序号</option>
+											<option value="user_name">用户名</option>
+											<!-- <option value="user_pwd">密码</option> -->
+											<option value="user_level">等级</option>
+											<option value="user_time">注册时间</option>
+
+										</select><input type="text" class="Ktext form-control"
+											placeholder="请输入查找信息">
+									</div>
+								</div>
+
+								<div class="search_input">
+									<button class="btn btn-dark search_btn" type="button"
+										id="search_btn">查询</button>
+									<button class="btn btn-dark search_btn" type="button"
+										id="reset_btn">重置</button>
+									<button class="btn btn-dark search_btn" type="button"
+										id="data_add_btn" data-toggle="modal" data-target="#editModal">添加</button>
+								</div>
+							</div>
+							<!--  -->
+							<table class="table table-striped table-hover table-responsive">
+								<thead class="thead-light">
+									<tr>
+										<th>序号</th>
+										<th>用户名</th>
+										<!-- <th>密码</th> -->
+										<th>等级</th>
+										<th>注册时间</th>
+										<th id="th_user">操作</th>
+									</tr>
+								</thead>
+								<tbody id="show_tbody">
+								</tbody>
+							</table>
+						</div>
+						<div class="pp-pagination"></div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<!-- 用户编辑模态框 -->
+	<div class="modal" id="editModal" tabindex="-1" role="dialog"
+		aria-labelledby="userModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-2-lg modal_position">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="data_edit_title">添加</h4>
+					<button type="button" class="close" data-dismiss="modal">×</button>
+				</div>
+				<div class="modal-body">
+					<table id="xztb" class="table">
+						<tbody>
+							<tr>
+								<td class="tb_bg"><label for=""><font
+										style="font-size: 14px; color: red;">*</font>姓名</label></td>
+								<td><input id="user_username" class="form-control" type="text"
+									placeholder="请输入姓名"></td>
+							</tr>
+							<tr>
+								<td class="tb_bg"><label for=""><font
+										style="font-size: 14px; color: red;">*</font>密码</label></td>
+								<td><input id="user_password"  class="form-control" type="text"
+									placeholder="请输入密码"></td>
+							</tr>
+							<tr>
+								<td class="tb_bg"><label for=""><font
+										style="font-size: 14px; color: red;">*</font>等级</label></td>
+								<td><select id="user_level" class="form-control select_down"
+									style="font-size: 13px; color: #666;">
+										<option value="1">1</option>
+										<option value="2">2</option>
+								</select></td>
+							</tr>
+							<!-- <tr>
+									<td class="tb_bg"><label for="">时间</label></td>
+									<td><input class="form-control phoneNum" type="datetime-local"
+										placeholder="请输入时间"></td>
+								</tr> -->
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button id="edit_btn_cancel" type="button"
+						class="btn btn-secondary" data-dismiss="modal">取消</button>
+					<button style="display:none" id="edit_btn_sure" type="button" class="btn btn-success">确定</button>
+					<button style="display:none" id="edit_useradd_btn_sure" type="button" class="btn btn-success">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootbox.min.js"></script>
+	<script src="js/mypaging.js"></script>
+	<script src="js/detail.js"></script>
+</body>
+
+</html>

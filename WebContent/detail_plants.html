@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="">
+<title>detail</title>
+<!-- Custom-Files -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<!-- Bootstrap-Core-CSS -->
+<link href="css/css_slider.css" type="text/css" rel="stylesheet"
+	media="all">
+<!-- banner slider -->
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+<!-- Style-CSS -->
+<link href="css/font-awesome.min.css" rel="stylesheet">
+<!-- Font-Awesome-Icons-CSS -->
+<link href="css/detail.css" rel="stylesheet">
+<!-- //Custom-Files -->
+
+<!-- Web-Fonts -->
+<link
+	href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i"
+	rel="stylesheet">
+<link
+	href="http://fonts.googleapis.com/css?family=Niconne&amp;subset=latin-ext"
+	rel="stylesheet">
+<link
+	href="http://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext"
+	rel="stylesheet">
+<!-- //Web-Fonts -->
+<script src="js/jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<div id="head"></div>
+	<script>
+		$("#head").load("nav.html");
+	</script>
+	<div id="home">
+		<section class="portfolio py-5" id="detail">
+			<div class="container py-xl-5 py-lg-3">
+				<div class="pp-content">
+					<!-- 管理---数据表 -->
+					<div class="pp-manage">
+						<div class="info_search">
+							<div class="search_input">
+								<div class="input-group mb-3">
+									<select style="cursor: pointer; width: 5rem" class="T-sort">
+										<option value="data_id">序号</option>
+										<option value="data_name">名称</option>
+										<option value="data_family">科属</option>
+										<option value="data_genus">种属</option>
+										<option value="data_local">分布</option>
+										<option value="data_purpose">用途</option>
+										<option value="data_time">时间</option>
+									</select> <input type="text" class="Ktext form-control"
+										placeholder="请输入查找信息">
+								</div>
+							</div>
+							<div class="search_input">
+								<button class="btn btn-dark search_btn" type="button"
+									id="search_btn">查询</button>
+								<button class="btn btn-dark search_btn" type="button"
+                            id="reset_btn">重置</button>
+								<button class="btn btn-dark search_btn" type="button"
+                            id="data_add_btn" data-toggle="modal" data-target="#editModal">添加</button>
+							</div>
+						</div>
+						<!--  -->
+						<table
+							class="table table-bordered table-striped table-hover table-responsive">
+							<thead id="show_thead" class="thead-light">
+								<tr>
+									<th>序号</th>
+									<th>名称</th>
+									<th>科属</th>
+									<th>种属</th>
+									<th>分布</th>
+									<th>用途</th>
+									<th>时间</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody id="show_tbody">
+							</tbody>
+						</table>
+					</div>
+					<div class="pp-pagination"></div>
+				</div>
+			</div>
+		</section>
+	</div>
+	<!-- 图像展示模态框 Modal -->
+	<div class="modal" id="exampleModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">植物信息</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body container">
+					<div class="card-columns">
+						<div class="card">
+							<img class="img-fluid" id="img_path" alt="图片" src="">
+						</div>
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 植物数据编辑模态框 -->
+	<div class="modal" id="editModal" tabindex="-1" role="dialog"
+		aria-labelledby="userModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-2-lg modal_position">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="data_edit_title">添加</h4>
+					<button type="button" class="close" data-dismiss="modal">×</button>
+				</div>
+				<div class="modal-body">
+					<table id="xztb" class="table">
+						<tbody>
+							<tr>
+								<td class="tb_bg"><label for=""><font
+										style="font-size: 14px; color: red;">*</font>植物名称</label></td>
+								<td><input id="plant_name" class="form-control" type="text"
+									placeholder="请输入植物名称"></td>
+							</tr>
+							<tr>
+								<td class="tb_bg"><label for=""><font
+										style="font-size: 14px; color: red;">*</font>科属</label></td>
+								<td><input id="plant_family" class="form-control" type="text"
+									placeholder="请输入科属信息"></td>
+							</tr>
+							<tr>
+								<td class="tb_bg"><label for=""><font
+										style="font-size: 14px; color: red;">*</font>种属</label></td>
+								<td><input id="plant_genus" class="form-control" type="text"
+									placeholder="请输入种属信息"></td>
+							</tr>
+							<tr>
+								<td class="tb_bg"><label for=""><font
+										style="font-size: 14px; color: red;">*</font>分布</label></td>
+								<td><input id="plant_local" class="form-control" type="text"
+									placeholder="请输入分布信息"></td>
+							</tr>
+							<tr>
+								<td class="tb_bg"><label for=""><font
+										style="font-size: 14px; color: red;">*</font>用途</label></td>
+								<td><input id="plant_purpose" class="form-control" type="text"
+									placeholder="请输入植物用途"></td>
+							</tr>
+							<tr>
+								<td class="tb_bg"><label for=""><font
+										style="font-size: 14px; color: red;">*</font>图片路径</label></td>
+								<td><input id="plant_imgpath" class="form-control" type="text"
+									placeholder="请输入图片路径"></td>
+							</tr>
+						
+							<!-- <tr>
+									<td class="tb_bg"><label for="">时间</label></td>
+									<td><input class="form-control phoneNum" type="datetime-local"
+										placeholder="请输入时间"></td>
+								</tr> -->
+						</tbody>
+					</table>
+				</div>
+				<div class="modal-footer">
+					<button id="edit_btn_cancel" type="button" class="btn btn-secondary"
+						data-dismiss="modal">取消</button>
+					<button style="display:none" id="edit_btn_sure" type="button" class="btn btn-success">确定</button>
+					<button style="display:none" id="edit_plansadd_btn_sure" type="button" class="btn btn-success">确定</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/bootbox.min.js"></script>
+	<script src="js/mypaging.js"></script>
+	<script src="js/detail.js"></script>
+</body>
+
+</html>

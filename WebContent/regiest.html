@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="keywords" content="">
+    <title>gallery</title>
+    <!-- Custom-Files -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Bootstrap-Core-CSS -->
+    <link href="css/css_slider.css" type="text/css" rel="stylesheet" media="all">
+    <!-- banner slider -->
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+    <!-- Style-CSS -->
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <!-- Font-Awesome-Icons-CSS -->
+    <link href="css/login.css" rel="stylesheet">
+    <!-- //Custom-Files -->
+
+    <!-- Web-Fonts -->
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,400i,600,600i,700,700i,900,900i" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Niconne&amp;subset=latin-ext" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext" rel="stylesheet">
+    <!-- //Web-Fonts -->
+<script src="js/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+	<div id="head"></div>
+	<script>
+ 	$("#head").load("nav.html");
+ 	</script>
+    <!-- //main -->
+    <div class="container">
+        <div class="card-wrap">
+            <div class="card">
+                <div class="card-head">
+                    <div id="landing">登陆</div>
+                    <div id="registered">注册</div>
+                </div>
+
+
+                <div id="landing-content">
+                    <div class="card-body">
+                        <div id="photo">
+                            <img src="images/photo.jpg" />
+                        </div>
+                        <div class="inp">
+                            <input class="form-control" id="log_username" type="text" placeholder="用户名" data-toggle="popover" data-html="true" data-trigger="focus" data-trigger="click" data-content="" />
+                        </div>
+                        <div class="inp">
+                            <input class="form-control" id="log_password" type="password" placeholder="密码" data-toggle="popover" data-html="true" data-trigger="focus" data-content="" />
+                        </div>
+                        <div class="fix"></div>
+                        <div class="btn btn-lg inp " id="but_login">登录</div>
+
+                    </div>
+                </div>
+                <div id="registered-content">
+                    <div class="card-body">
+                        <div class="inp">
+                            <input class="form-control" id="reg_username" type="text" placeholder="请输入用户名" data-toggle="popover" data-html="true" data-trigger="focus" data-content="" />
+                        </div>
+                        <div class="inp">
+                            <input class="form-control" id="reg_password" type="password" placeholder="请输入密码" data-toggle="popover" data-html="true" data-trigger="focus" data-content="" />
+                        </div>
+                        <div class="inp">
+                            <input class="form-control" id="reg_password1" type="password" placeholder="请再次输入密码" data-toggle="popover" data-html="true" data-trigger="focus" data-content="" />
+                        </div>
+                        <div class="inp">
+                            <input class="form-control" id="reg_miyao" type="password" placeholder="管理员注册" data-toggle="popover" data-html="true" data-trigger="focus" data-content="<span class='text-info'>请输入管理员密钥（可为空，注册普通用户请忽略）</span>" />
+                        </div>
+                        <div class="modal fade" id="loginModal">
+                            <div class="modal-dialog modal-sm">
+                                <div class="modal-content">
+
+                                    <!-- 模态框头部 -->
+                                    <div class="modal-header">
+                                        <h4 class="modal-title">提示信息</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    </div>
+
+                                    <!-- 模态框主体 -->
+                                    <div class="modal-body">模态框内容..</div>
+
+                                    <!-- 模态框底部 -->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary bg-info" data-dismiss="modal">关闭</button>
+                                        <button type="button" class="btn btn-secondary bg-danger" data-dismiss="modal">关闭</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fix"></div>
+                        <div class="btn btn-lg inp " id="but_register">立即注册</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootbox.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/all.js"></script>
+</body>
+
+</html>
