@@ -1,72 +1,57 @@
-
-var video = document.querySelector('video');
-var text = document.getElementById('text');
-var canvas1 = document.getElementById('qr-canvas');
-var context1 = canvas1.getContext('2d');
-var mediaStreamTrack;
-
-//一堆兼容代码
-window.URL = (window.URL || window.webkitURL || window.mozURL || window.msURL);
-if (navigator.mediaDevices === undefined) {
-	navigator.mediaDevices = {};
-}
-if (navigator.mediaDevices.getUserMedia === undefined) {
-	navigator.mediaDevices.getUserMedia = function(constraints) {
-		var getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-		if (!getUserMedia) {
-			return Promise.reject(new Error('getUserMedia is not implemented in this browser'));
-		}
-		return new Promise(function(resolve, reject) {
-			getUserMedia.call(navigator, constraints, resolve, reject);
-		});
-	}
-} 
-
-//摄像头调用配置
-var mediaOpts = {
-		audio: false,
-		video: true,
-		video: { facingMode: "environment"} // 或者 "user"
-//video: { width: 1280, height: 720 }
-//video: { facingMode: { exact: "environment" } }// 或者 "user"
+function changepic() {
+//	$("#imgPreview").css("display", "none");
+	$("#imgPreview").hide();
+	var reads = new FileReader();
+	f = document.getElementById('chooseImage').files[0];
+	reads.readAsDataURL(f);
+	reads.onload = function(e) {
+		document.getElementById('plantimg').src = this.result;
+		$("#plantimg").show();
+		$("#saveFilebtn").attr("disabled", false);
+		$("#saveFilebtn").css('cursor','pointer');
+		$("#plantsbefloading").show();
+		$(".plantsimginfo").hide();
+		$("#plantsbefloading>h5").text("暂无结果");	
+	};
 }
 
-//回调
-function successFunc(stream) {
-	mediaStreamTrack = stream;
-	video = document.querySelector('video');
-	if ("srcObject" in video) {
-		video.srcObject = stream
-	} else {
-		video.src = window.URL && window.URL.createObjectURL(stream) || stream
-	}
-	video.play();
-}
-function errorFunc(err) {
-	alert(err.name);
-}
+var saveFile = function(){
+	$("#plantsloading").show();
+	 var form=document.getElementById("chooseImage").files[0];
+	var reader = new FileReader();
+	reader.readAsDataURL(form);
+	reader.onload = function(){
+//		console.log(reader.result);
+		let imgdata = reader.result.split(",")[1]  //　这样才是完整的数据
+//		$.ajaxSettings.async = false;
+		$.post("PlantRecognition", { "img": imgdata }, function (data) {
+//			alert(data);
+			let _html ="";
+			console.log("data"+data);
+			let plantdata = $.parseJSON(data)
+			if(plantdata.result){
+				$("#plantsbefloading").hide();
+				$("#plantsloading").hide();
+				for (let a of plantdata.result){
+					_html +='<li class="plantsimginfo" style="display:flex;justify-content: space-between;font-size:1.5rem;"><span>名称:'+a.name+'</span><br><span>概率：'+a.score.toFixed(3)+'</span></li>';
+					console.log("_html"+_html);
+				}
+				$("#plantresult").append(_html);
+			}else {
+				alert("错误："+plantdata.error_msg);
+			}
+//			console.log("plantdata.result"+plantdata.result);
 
-//正式启动摄像头
-function openMedia(){
-	navigator.mediaDevices.getUserMedia(mediaOpts).then(successFunc).catch(errorFunc);
-}
 
-//关闭摄像头
-function closeMedia(){
-	mediaStreamTrack.getVideoTracks().forEach(function (track) {
-		track.stop();
-		context1.clearRect(0, 0,context1.width, context1.height);//清除画布
-	});
-}
+//			$("#plantcontain").
+		}, "text");
+//		$.ajaxSettings.async = true;
+	};
 
-//截取视频
-function drawMedia(){
-	canvas1.setAttribute("width", video.videoWidth);
-	canvas1.setAttribute("height", video.videoHeight);
-	context1.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-}
-window.onresize = function() {
-    //重置容器高宽
-/*     resizemyChartContainer(); */
-	canvas1.resize();
+//	console.log(formdata);
+//	var imgData = canvas1.toDataURL();
+//	var base64Data = imgData.substr(22);
+
+//	console.log(base64Data);
+
 };

@@ -40,20 +40,68 @@
 	</script>
 	<div id="home">
 		<!-- gallery -->
-		<section class="portfolio py-5" id="camera">
+		<div class="team py-5" id="team">
 			<div class="container py-xl-5 py-lg-3">
-				<p>
-					<button onclick="openMedia()">打开</button>
-					<button onclick="closeMedia()">关闭</button>
-					<button onclick="drawMedia()">截取</button>
-				</p>
-				<video id="video" class="bg"></video>
-				<canvas id="qr-canvas"></canvas>
+				<h3
+					class="w3ls-title text-da text-center font-weight-bold mb-5 pb-xl-4">
+					植物 <span class="font-weight-light">识别</span>
+				</h3>
+				<div class="row team-bottom pt-4 text-center">
+					<div class="col-lg-4 col-sm-6 team-grid">
+						<div id="imgPreview"
+							style="height: 400px; border: 1px solid black; text-align: center; line-height: 400px;">
+							<label for="chooseImage" style="width: 100%"> <span
+								style="font-size: 1.5rem;" id="plantimgspan">选择需要识别的图片</span>
+							</label>
+						</div>
+						<img id="plantimg" src="" class="img-fluid" alt=""
+							style="display: none; width: 300px; height: 400px">
+						<div class="caption">
+							<h4></h4>
+
+							<ul>
+								<li><label for="chooseImage" class="btn btn-info"
+									style="cursor: pointer;">选择图片</label> <input
+									class="btn btn-info" type="file" name="file" id="chooseImage"
+									style="display: none;" onchange="changepic(this)"
+									accept="image/jpg,image/jpeg,image/png,image/PNG" /></li>
+								<li>
+									<button id="saveFilebtn" onClick="saveFile();"
+										style="cursor: not-allowed;" class="btn btn-info" disabled>识别</button>
+								</li>
+							</ul>
+
+						</div>
+					</div>
+					<div class="col-lg-4 col-sm-6 team-grid mt-lg-0 mt-5">
+						<div class="caption">
+							<div class="team-text">
+								<h4>识别结果</h4>
+							</div>
+							<ul id="plantresult">
+								<li><div id="plantsbefloading">
+									<h5>暂无识别图片</h5>
+								</div></li>
+								<li><div id="plantsloading" style="display: none;">
+									<img style="width: 300px;" src="images/loading1.gif" />
+									<h5>识别中</h5>
+								</div></li>
+							</ul>
+						</div>
+					</div>
+					<div id="plantcontain" style="display:none;" class="col-lg-4 col-sm-6 team-grid mt-sm-0 mt-5">
+						<a href="#"><img src="" class="img-fluid" alt=""></a>
+						<div class="caption">
+							<div class="team-text"></div>
+						</div>
+					</div>
+
+				</div>
 			</div>
-		</section>
+		</div>
 	</div>
 	<script src="js/bootstrap.min.js"></script>
-	<script src="js/camera.js" ></script>
+	<script src="js/camera.js"></script>
 </body>
 
 </html>

@@ -49,7 +49,7 @@ function getuser(){
 	$.get("IndexServlet?action=getuser&nocache="+ new Date().getTime(),function(data){
 //		window.location ="manage.html";
 //		alert(data);
-		console.log("用户:"+data);
+//		console.log("用户:"+data);
 		let arr=data.split(";");
 		result = arr[0];
 		level = arr[1];
@@ -70,7 +70,7 @@ function getuser(){
 		}
 	});	
 //	return level;
-	console.log("result:"+result+"level:"+level);
+	console.log("用户名:"+result+"，等级:"+level);
 	$.ajaxSettings.async = true;
 	return{
 		getuser_name:result,
@@ -226,9 +226,9 @@ function setTbody (arr,table) {
 //			var time = item.time.replace(/_/g,":");
 			if(user.getuser_level>=2){
 //				html += "<tr><td>" + item.id + "</td><td>" + item.name + "</td><td>" + item.family + "</td><td>" + item.genus + "</td><td>" + item.local + "</td><td>" + item.purpose + "</td><td>" + item.time + "</td><td><button  type='button' class='btn btn-info' data-imgid='"+item.id+"' data-toggle='modal' data-target='#exampleModal'>查看</button><button type='button' class='btn btn-danger' id='btn_imgremove' data-imgid='"+item.id+"'>删除</button></td></tr>";
-				html += "<tr><td>" + item.id + "</td><td>" + item.name + "</td><td>" + item.family + "</td><td>" + item.genus + "</td><td>" + item.local + "</td><td>" + item.purpose + "</td><td>" + item.time + "</td><td><button  type='button' class='btn btn-info' data-imgid='"+item.id+"' data-toggle='modal' data-target='#exampleModal'>查看</button><button type='button' class='btn btn-danger' id='btn_imgremove' data-imgid='"+item.id+"'>删除</button><button type='button' class='btn btn-info' id='btn_imgedit' data-imgid='"+item.id+"' data-toggle='modal' data-target='#editModal'>编辑</button></td></tr>";
+				html += "<tr><td>" + item.id + "</td><td>" + item.name + "</td><td>" + item.family + "</td><td>" + item.genus + "</td><td>" + item.base+ "</td><td>" + item.local + "</td><td>" + item.purpose + "</td><td>" + item.time + "</td><td><button  type='button' class='btn btn-info' data-imgid='"+item.id+"' data-toggle='modal' data-target='#exampleModal'>查看</button><button type='button' class='btn btn-danger' id='btn_imgremove' data-imgid='"+item.id+"'>删除</button><button type='button' class='btn btn-info' id='btn_imgedit' data-imgid='"+item.id+"' data-toggle='modal' data-target='#editModal'>编辑</button></td></tr>";
 			}else{
-				html += "<tr><td>" + item.id + "</td><td>" + item.name + "</td><td>" + item.family + "</td><td>" + item.genus + "</td><td>" + item.local + "</td><td>" + item.purpose + "</td><td>" + item.time + "</td><td><button type='button' class='btn btn-info' data-imgid='"+item.id+"' data-toggle='modal' data-target='#exampleModal'>查看</button></td></tr>";
+				html += "<tr><td>" + item.id + "</td><td>" + item.name + "</td><td>" + item.family + "</td><td>" + item.genus + "</td><td>" + item.base+ "</td><td>" + item.local + "</td><td>" + item.purpose + "</td><td>" + item.time + "</td><td><button type='button' class='btn btn-info' data-imgid='"+item.id+"' data-toggle='modal' data-target='#exampleModal'>查看</button></td></tr>";
 			}
 			/*console.log(html);*/
 //			$(".pp-manage #show_tbody").html(html);
@@ -312,6 +312,7 @@ function setTbody (arr,table) {
 					$("#plant_name").val(item.name)
 					$("#plant_family").val(item.family)
 					$("#plant_genus").val(item.genus)
+					$("#plant_base").val(item.base)
 					$("#plant_local").val(item.local)
 					$("#plant_purpose").val(item.purpose)
 					$("#plant_imgpath").val(item.imgpath)

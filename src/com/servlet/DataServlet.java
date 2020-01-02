@@ -113,6 +113,7 @@ public class DataServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String family = request.getParameter("family");
 		String genus = request.getParameter("genus");
+		String base = request.getParameter("base");
 		String local = request.getParameter("local");
 		String purpose = request.getParameter("purpose");
 		//		String time = request.getParameter("time");
@@ -120,7 +121,7 @@ public class DataServlet extends HttpServlet {
 		String imgpath = request.getParameter("imgpath");
 		String updatavalue ="";
 		String plantsname=name;
-		String arr[] = {name,family,genus,local,purpose,time,imgpath};	
+		String arr[] = {name,family,genus,base,local,purpose,time,imgpath};	
 		for(int i=0;i<arr.length;i++) {
 			if(arr[i]!=null) {
 				switch (i) {
@@ -134,16 +135,19 @@ public class DataServlet extends HttpServlet {
 					updatavalue +="genus="+"\'"+arr[2]+"\',";
 					break;
 				case 3:
-					updatavalue +="local="+"\'"+arr[3]+"\',";
+					updatavalue +="base="+"\'"+arr[3]+"\',";
 					break;
 				case 4:
-					updatavalue +="purpose="+"\'"+arr[4]+"\',";
+					updatavalue +="local="+"\'"+arr[4]+"\',";
 					break;
 				case 5:
-					updatavalue +="time="+"\'"+arr[5]+"\',";
+					updatavalue +="purpose="+"\'"+arr[5]+"\',";
 					break;
 				case 6:
-					updatavalue +="imgpath="+"\'"+arr[6]+"\',";
+					updatavalue +="time="+"\'"+arr[6]+"\',";
+					break;
+				case 7:
+					updatavalue +="imgpath="+"\'"+arr[7]+"\',";
 					break;
 
 				default:
@@ -181,6 +185,7 @@ public class DataServlet extends HttpServlet {
 		String family = request.getParameter("family");
 		String genus = request.getParameter("genus");
 		String local = request.getParameter("local");
+		String base = request.getParameter("base");
 		String purpose = request.getParameter("purpose");
 		//		String time = request.getParameter("time");
 		String time = time();// 获取时间
@@ -188,9 +193,9 @@ public class DataServlet extends HttpServlet {
 		String result ="";
 		String tablevalue = "";
 		String arr1 ="";
-		tablevalue = table+"(`name`,`family`,`genus`,`local`,`purpose`,`time`,`imgpath`)";
+		tablevalue = table+"(`name`,`family`,`genus`,`base`,`local`,`purpose`,`time`,`imgpath`)";
 		if(table == "plants") {
-			String arr[] = {name,family,genus,local,purpose,time,imgpath};			
+			String arr[] = {name,family,genus,base,local,purpose,time,imgpath};			
 			for(int i=0;i<arr.length;i++) {
 				arr1 +="\'"+ arr[i]+ "\',";
 				System.out.println("arr1:"+arr1);

@@ -572,7 +572,7 @@ a.reqe-button {
 }
 
 .banner-top {
-	background: url(../images/3.jpg) no-repeat bottom;
+	background: url(../images/homebg1.jpg) no-repeat bottom;
 	background-size: cover;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -581,7 +581,7 @@ a.reqe-button {
 }
 
 .banner-top1 {
-	background: url(../images/2.jpg) no-repeat bottom;
+	background: url(../images/homebg2.jpg) no-repeat bottom;
 	background-size: cover;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -590,7 +590,7 @@ a.reqe-button {
 }
 
 .banner-top2 {
-	background: url(../images/1.jpg) no-repeat top;
+	background: url(../images/homebg3.jpg) no-repeat top;
 	background-size: cover;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -599,7 +599,7 @@ a.reqe-button {
 }
 
 .banner-top3 {
-	background: url(../images/4.jpg) no-repeat 0px 0px;
+	background: url(../images/homebg4.jpg) no-repeat 0px 0px;
 	background-size: cover;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -682,7 +682,7 @@ a.button-style:hover {
 
 .main-img img {
 	border: 11px solid #f5f5f5;
-	transform: rotate(-23deg);
+	/* transform: rotate(-23deg); */
 	box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.08), 0 5px 8px 0
 		rgba(0, 0, 0, 0.12), 0 1px 14px 0 rgba(0, 0, 0, 0.06);
 }
@@ -1093,6 +1093,7 @@ h4.stat-text-wthree {
 /* team */
 .caption {
 	text-align: center;
+	margin: 2rem;
 }
 
 .team-text h4 {
@@ -1105,11 +1106,12 @@ h4.stat-text-wthree {
 
 .caption ul li {
 	display: inline-block;
+	margin-top:1rem;
 }
 
-.caption ul li:nth-child(2) {
+/* .caption ul li:nth-child(2) {
 	margin: 0 .3em;
-}
+} */
 
 .caption ul li a i {
 	color: #fff;
