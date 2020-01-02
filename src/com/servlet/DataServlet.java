@@ -44,22 +44,27 @@ public class DataServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		String table = request.getParameter("table");
 		String removeid = request.getParameter("removeid");
+//		String qrqueryid = request.getParameter("qrqueryid");
 		String nocache = request.getParameter("nocache");
 		System.out.println("编码格式："+response.getCharacterEncoding()+";action:" + action +";table:"+table +";nocache:" + nocache);
 		PrintWriter out = response.getWriter();
 		if ("query".equals(action)) {
 			JSONArray result = query(table);
 			out.print(result);
+//		}else if ("qrquery".equals(action)) {
+//			JSONArray result =qrquery(qrqueryid);
+//			out.print(result);
+		}else if ("qraction".equals(action)) {
+			qraction(request,response);
+		}else if ("querynum".equals(action)) {
+			JSONArray result =querynum(table);
+			out.print(result);
 		}else if ("reorder".equals(action)) {
 			String result =reorder(table);
 			out.print(result);
 		}else if ("dataremove".equals(action)) {
 			String result =dataremove(table,removeid);
-			out.print(result);
-			//					}else if ("userupdata".equals(action)) {
-			//						String result =userupdata(table,removeid);
-			//						out.print(result);
-			//						
+			out.print(result);					
 		}else if ("inserdata".equals(action)) {
 			String result =inserdata(request,response);
 			out.print(result);
@@ -74,6 +79,17 @@ public class DataServlet extends HttpServlet {
 	}
 	protected  JSONArray query(String table) {
 		JSONArray result = dataDao.query(table);
+		return result;
+	}
+//	protected  JSONArray qrquery(String id) {
+//		JSONArray result = dataDao.qrquery(id);
+//		return result;
+//	}
+	protected void qraction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/qrquery.html").forward(request, response);
+	}
+	protected  JSONArray querynum(String table) {
+		JSONArray result = dataDao.querynum();
 		return result;
 	}
 	protected String reorder(String table) {
@@ -91,11 +107,13 @@ public class DataServlet extends HttpServlet {
 		String result = dataDao.dataremove(table,removeid);
 		return result;
 	}
+	
 
 	protected String editdata(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		String name = request.getParameter("name");
 		String family = request.getParameter("family");
 		String genus = request.getParameter("genus");
+		String base = request.getParameter("base");
 		String local = request.getParameter("local");
 		String purpose = request.getParameter("purpose");
 		//		String time = request.getParameter("time");
@@ -103,12 +121,12 @@ public class DataServlet extends HttpServlet {
 		String imgpath = request.getParameter("imgpath");
 		String updatavalue ="";
 		String plantsname=name;
-		String arr[] = {name,family,genus,local,purpose,time,imgpath};	
+		String arr[] = {name,family,genus,base,local,purpose,time,imgpath};	
 		for(int i=0;i<arr.length;i++) {
 			if(arr[i]!=null) {
 				switch (i) {
 				case 0:
-//					updatavalue +="name="+"\'"+arr[0]+"\',";
+					//					updatavalue +="name="+"\'"+arr[0]+"\',";
 					break;
 				case 1:
 					updatavalue +="family="+"\'"+arr[1]+"\',";
@@ -117,16 +135,19 @@ public class DataServlet extends HttpServlet {
 					updatavalue +="genus="+"\'"+arr[2]+"\',";
 					break;
 				case 3:
-					updatavalue +="local="+"\'"+arr[3]+"\',";
+					updatavalue +="base="+"\'"+arr[3]+"\',";
 					break;
 				case 4:
-					updatavalue +="purpose="+"\'"+arr[4]+"\',";
+					updatavalue +="local="+"\'"+arr[4]+"\',";
 					break;
 				case 5:
-					updatavalue +="time="+"\'"+arr[5]+"\',";
+					updatavalue +="purpose="+"\'"+arr[5]+"\',";
 					break;
 				case 6:
-					updatavalue +="imgpath="+"\'"+arr[6]+"\',";
+					updatavalue +="time="+"\'"+arr[6]+"\',";
+					break;
+				case 7:
+					updatavalue +="imgpath="+"\'"+arr[7]+"\',";
 					break;
 
 				default:
@@ -134,7 +155,7 @@ public class DataServlet extends HttpServlet {
 				}
 				//				upuservalue +="\'"+ arr[i]+ "\',";
 			}
-//			System.out.println("upuservalue:upuservalue:"+updatavalue.length());
+			//			System.out.println("upuservalue:upuservalue:"+updatavalue.length());
 		}
 		updatavalue = updatavalue.substring(0,updatavalue.length() - 1);
 		System.out.println("updatavalue:"+updatavalue);
@@ -164,6 +185,7 @@ public class DataServlet extends HttpServlet {
 		String family = request.getParameter("family");
 		String genus = request.getParameter("genus");
 		String local = request.getParameter("local");
+		String base = request.getParameter("base");
 		String purpose = request.getParameter("purpose");
 		//		String time = request.getParameter("time");
 		String time = time();// 获取时间
@@ -171,9 +193,9 @@ public class DataServlet extends HttpServlet {
 		String result ="";
 		String tablevalue = "";
 		String arr1 ="";
-		tablevalue = table+"(`name`,`family`,`genus`,`local`,`purpose`,`time`,`imgpath`)";
+		tablevalue = table+"(`name`,`family`,`genus`,`base`,`local`,`purpose`,`time`,`imgpath`)";
 		if(table == "plants") {
-			String arr[] = {name,family,genus,local,purpose,time,imgpath};			
+			String arr[] = {name,family,genus,base,local,purpose,time,imgpath};			
 			for(int i=0;i<arr.length;i++) {
 				arr1 +="\'"+ arr[i]+ "\',";
 				System.out.println("arr1:"+arr1);
@@ -192,17 +214,6 @@ public class DataServlet extends HttpServlet {
 		return result;
 	}
 
-	/*
-	 * public static void main(String[] args) {
-	 * 
-	 * //判断插入语句 String arr[] ={"甘蓝", "十字花科", "芸薹属", "中国各地",
-	 * "甘蓝菜所含的植化素可以作为重要的抗氧化剂和抗炎相关慢性疾病的预防，包含癌症。", "2019", "img/gl.jpg"}; String arr1
-	 * =""; for(int i=0;i<arr.length;i++) { arr1 +="\'"+ arr[i]+ "\',"; } arr1 =
-	 * arr1.substring(0,arr1.length() - 1); String result = dataDao.inserttable(
-	 * "plants(`name`,`family`,`genus`,`local`,`purpose`,`time`,`imgpath`)",arr1);
-	 * 
-	 * }
-	 */
 	public String time() {
 		Date day = new Date();
 		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -210,5 +221,20 @@ public class DataServlet extends HttpServlet {
 		String time = df.format(day);
 		return time;
 	}
+
+//	public static void main(String[] args) {
+
+		//判断插入语句 
+//		String arr[] ={"甘蓝", "十字花科", "芸薹属", "中国各地",	  "甘蓝菜所含的植化素可以作为重要的抗氧化剂和抗炎相关慢性疾病的预防，包含癌症。", "2019", "img/gl.jpg"}; 
+//		String arr1=""; 
+//		for(int i=0;i<arr.length;i++) {
+//			arr1 +="\'"+ arr[i]+ "\',"; 
+//		} 
+//		arr1 =arr1.substring(0,arr1.length() - 1); 
+//		String result = dataDao.inserttable("plants(`name`,`family`,`genus`,`local`,`purpose`,`time`,`imgpath`)",arr1);
+//		System.out.println(result);
+//		JSONArray arry = querynum();
+		
+//	}
 }
 

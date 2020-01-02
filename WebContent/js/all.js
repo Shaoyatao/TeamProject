@@ -40,7 +40,7 @@
 		var arr=data.split(";");
 		result =arr[0];
 		level = arr[1];
-		console.log("level",level);
+//		console.log("level",level);
 		//用户未登录
 		if(level==0){ 
 		$("#hrefexit").hide();
