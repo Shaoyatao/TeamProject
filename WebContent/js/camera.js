@@ -17,6 +17,7 @@ function changepic() {
 
 var saveFile = function(){
 	$("#plantsloading").show();
+	$(".plantsimginfo").hide();
 	 var form=document.getElementById("chooseImage").files[0];
 	var reader = new FileReader();
 	reader.readAsDataURL(form);
