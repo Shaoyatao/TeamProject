@@ -75,7 +75,8 @@ public class PlantRecognition extends HttpServlet {
 			String param = "image=" + imgParam;
 
 			// 注意这里仅为了简化编码每一次请求都去获取access_token，线上环境access_token有过期时间， 客户端可自行缓存，过期后重新获取。
-			String accessToken = "24.c7c9b6f2734c4fca82df564cbe2994e1.2592000.1579265793.282335-18058446";
+//			String accessToken = "24.c7c9b6f2734c4fca82df564cbe2994e1.2592000.1579265793.282335-18058446";
+			String accessToken = "24.de49cfda666f7ce812f2bc44b2892cbb.2592000.1582986174.282335-18058446";
 
 			String result = HttpUtil.post(url, accessToken, param);
 			System.out.println("result:"+result);

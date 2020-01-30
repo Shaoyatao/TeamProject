@@ -19,7 +19,7 @@ $(document).ready(function() {
 	})
 	/*点击登录，开始用户登录验证*/
 	$("#but_login").click(function() {
-		var relog_username = /^[\w][0-9a-zA-Z]{5,16}$/i;
+		var relog_username = /^[\w][0-9a-zA-Z]{3,16}$/i;
 		var relog_password = /[0-9a-zA-Z]{6,18}$/i;
 		if ($("#log_username").val() == "") { //
 //			$(".popover").addClass("bg-warning")
@@ -31,7 +31,7 @@ $(document).ready(function() {
 			$("#log_password").focus();
 			return false;	
 		}else if(!relog_username.test($("#log_username").val())){
-			$("#log_username").attr("data-content","<span class='text-warning'>用户名需为字母开头，6-12位。</span>")
+			$("#log_username").attr("data-content","<span class='text-warning'>用户名需为字母开头，4-12位。</span>")
 			$("#log_username").focus(); //
 			return false;
 		}else if(!relog_password.test($("#log_password").val())){
@@ -68,7 +68,7 @@ $(document).ready(function() {
 	});
 	/*用户注册*/
 	$("#but_register").click(function() {
-		var rereg_username = /^[\w][0-9a-zA-Z]{5,16}$/i;
+		var rereg_username = /^[\w][0-9a-zA-Z]{3,16}$/i;
 		var rereg_password = /[0-9a-zA-Z]{6,18}$/i;
 		if ($("#reg_username").val() == "") { // 判断是否输入用户名
 			$("#reg_username").attr("data-content","<span class='text-warning'>请填写此字段</span>")
@@ -88,7 +88,7 @@ $(document).ready(function() {
 			$("#reg_password1").focus();
 			return false;
 		}else if(!rereg_username.test($("#reg_username").val())){
-			$("#reg_username").attr("data-content","<span class='text-warning'>用户名需为字母开头，6-12位。</span>")
+			$("#reg_username").attr("data-content","<span class='text-warning'>用户名需为字母开头，4-12位。</span>")
 			$("#reg_username").focus(); //
 			return false;
 		}else if(!rereg_password.test($("#reg_password").val())){

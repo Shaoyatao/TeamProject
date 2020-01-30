@@ -13,8 +13,8 @@ public class ConnDB {
 	public Statement stmt = null; // 声明Statement对象的实例
 	public ResultSet rs = null; // 声明ResultSet对象的实例
 	private static String dbClassName = "com.mysql.jdbc.Driver"; // 定义保存数据库驱动的变量
-//	private static String dbUrl = "jdbc:mysql://127.0.0.1:3306/plantsinfo?user=root&password=123456&characterEncoding=utf8";
-	private static String dbUrl = "jdbc:mysql://101.200.148.140:3306/plantsinfo?user=root&password=123&characterEncoding=utf8";
+	private static String dbUrl = "jdbc:mysql://127.0.0.1:3306/plantsinfo?user=root&password=123456&characterEncoding=utf8";
+//	private static String dbUrl = "jdbc:mysql://101.200.148.140:3306/plantsinfo?user=root&password=123&characterEncoding=utf8";
 //	private static String dbUrl = "jdbc:mysql://127.0.0.1:3306/sytproject?user=syt&password=qwe123&characterEncoding=utf8";
 //	private static String dbUrl = "jdbc:mysql://127.0.0.1:3306/robot?user=root&password=123456&useunicode=true&characterencoding=gbk";
 //	private static String dbUrl = "jdbc:mysql://localhost:3306/robot?&useunicode=true&characterencoding=gbk";
