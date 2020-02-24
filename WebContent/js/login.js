@@ -19,6 +19,8 @@ $(document).ready(function() {
 	})
 	/*点击登录，开始用户登录验证*/
 	$("#but_login").click(function() {
+		var relog_username = /^[\w][0-9a-zA-Z]{3,16}$/i;
+		var relog_password = /[0-9a-zA-Z]{6,18}$/i;
 		if ($("#log_username").val() == "") { //
 //			$(".popover").addClass("bg-warning")
 			$("#log_username").attr("data-content","<span class='text-warning'>请填写此字段</span>")
@@ -28,7 +30,15 @@ $(document).ready(function() {
 			$("#log_password").attr("data-content","<span class='text-warning'>请填写此字段</span>")
 			$("#log_password").focus();
 			return false;	
-		}else { 
+		}else if(!relog_username.test($("#log_username").val())){
+			$("#log_username").attr("data-content","<span class='text-warning'>用户名需为字母开头，4-12位。</span>")
+			$("#log_username").focus(); //
+			return false;
+		}else if(!relog_password.test($("#log_password").val())){
+			$("#log_password").attr("data-content","<span class='text-warning'>密码需大于等于6位小于等于18位</span>")
+			$("#log_password").focus();
+			return false;	
+		}else{ 
 			$.post("IndexServlet?action=login&username="+$("#log_username").val()+"&password="+$("#log_password").val()+ "&nocache=" + new Date().getTime(),
 					function(data){
 				if(data==1){
@@ -58,6 +68,8 @@ $(document).ready(function() {
 	});
 	/*用户注册*/
 	$("#but_register").click(function() {
+		var rereg_username = /^[\w][0-9a-zA-Z]{3,16}$/i;
+		var rereg_password = /[0-9a-zA-Z]{6,18}$/i;
 		if ($("#reg_username").val() == "") { // 判断是否输入用户名
 			$("#reg_username").attr("data-content","<span class='text-warning'>请填写此字段</span>")
 			$("#reg_username").focus(); // 让用户名文本框获得焦点
@@ -75,8 +87,16 @@ $(document).ready(function() {
 			$("#reg_password1").attr("data-content","<span class='text-danger'>输入密码不一致</span>")
 			$("#reg_password1").focus();
 			return false;
-		} // 已经输入用户名时，检测用户名是否唯一
-		else{//检查用户名是否已被注册
+		}else if(!rereg_username.test($("#reg_username").val())){
+			$("#reg_username").attr("data-content","<span class='text-warning'>用户名需为字母开头，4-12位。</span>")
+			$("#reg_username").focus(); //
+			return false;
+		}else if(!rereg_password.test($("#reg_password").val())){
+			$("#reg_password").attr("data-content","<span class='text-warning'>密码需大于等于6位小于等于18位</span>")
+			$("#reg_password").focus();
+			return false;	 
+		// 已经输入用户名时，检测用户名是否唯一
+		}else{//检查用户名是否已被注册
 			$.post("IndexServlet?action=checkUser&username=" +$("#reg_username").val() + "&nocache=" + new Date().getTime(), 
 					function(data){
 				if(data==1){
